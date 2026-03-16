@@ -2,21 +2,22 @@ name: simple python testing
 
 on:
   push:
-    branch: "main"
-  pull-request:
-    branch: "main"
+    branches: ["main"]
+
+  pull_request:
+    branches: ["main"]
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       #step 1: check out code
-      - name: checkout code
-      - use: actions/checkout@v2
+      - name: checkout code for execuion
+        uses: actions/checkout@v2
 
       #step 2: set up python environment
       - name: python environment setup 3.9
-      - use: actions/setup-python@v4
+        uses: actions/setup-python@v4
         with:
           python-version: "3.9"
       
@@ -28,5 +29,6 @@ jobs:
 
       # step 4: run tests
       - name: run test
-        run: pytest
+        run: |
+          pytest
 
